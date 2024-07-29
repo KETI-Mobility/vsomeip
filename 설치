@@ -1,0 +1,30 @@
+설치: README에는 설명되지 않은 추가 설치 패키지
+
+- Install Boost Libraries:
+> sudo apt-get install libboost-all-dev
+> export CMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/
+
+- Install automotive-dlt:
+> sudo apt-get install libdlt-dev
+> export PKG_CONFIG_PATH=/usr/lib/pkgconfig:$PKG_CONFIG_PATH
+
+- Install the systmd development libraries:
+> sudo apt-get install libsystemd-dev
+> export PKG_CONFIG_PATH=/usr/lib/pkgconfig:$PKG_CONFIG_PATH
+
+- Install Google Benchmark:
+> sudo apt-get install libbenchmark-dev
+> export CMAKE_PREFIX_PATH=/usr/local/lib/cmake/benchmark:$CMAKE_PREFIX_PATH
+
+- Install Google Test:
+> sudo apt-get install libgtest-dev
+> export GTEST_ROOT=/usr/src/gtest
+
+위와 같이 모두 설치하고 나서, vsomeip/build 디렉토리에서 cmake .. 명령을 실행시켰는데 GTEST_ROOT is not defined. 에러 메시지가 나옴.
+
+그래서 cmake -DGTEST_ROOT=$GTEST_ROOT .. 와 같이 명령을 실행시켰더니 성공!
+
+그리고 make 혹은 make -j$(nproc) 
+
+그리고 make install
+
